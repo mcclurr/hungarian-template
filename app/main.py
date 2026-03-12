@@ -35,18 +35,18 @@ def benchmark(sizes, repeats=10, seed=42):
     return np.array(n_cubed), np.array(mean_times)
 
 
-def plot_runtime_vs_n3(n_cubed, mean_times, out_dir="out"):
+def plot_runtime_vs_n3(n, mean_times, out_dir="out"):
     os.makedirs(out_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"{timestamp}_runtime_vs_n3.png"
+    filename = f"{timestamp}_runtime_vs_n.png"
     filepath = os.path.join(out_dir, filename)
 
     plt.figure(figsize=(8, 5))
-    plt.plot(n_cubed, mean_times, marker="o")
-    plt.xlabel("n^3")
+    plt.plot(n, mean_times, marker="o")
+    plt.xlabel("n")
     plt.ylabel("Runtime (seconds)")
-    plt.title("SciPy linear_sum_assignment Runtime vs n^3")
+    plt.title("SciPy linear_sum_assignment Runtime vs n")
     plt.grid(True)
     plt.tight_layout()
     plt.savefig(filepath, dpi=200, bbox_inches="tight")
@@ -56,6 +56,6 @@ def plot_runtime_vs_n3(n_cubed, mean_times, out_dir="out"):
 
 
 if __name__ == "__main__":
-    sizes = [2, 5, 10, 15, 20, 30, 40, 50, 60, 75, 100, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+    sizes = [2, 5, 10, 15, 20, 30, 40, 50, 60, 75, 100, 500, 1000, 2000, 3000, 4000, 5000] #, 6000, 7000, 8000, 9000, 10000]
     n_cubed, mean_times = benchmark(sizes, repeats=10)
-    plot_runtime_vs_n3(n_cubed, mean_times)
+    plot_runtime_vs_n3(sizes, mean_times)
