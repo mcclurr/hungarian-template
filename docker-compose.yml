@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  python-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python-dev
+    working_dir: /home/src
+    volumes:
+      - ./app/:/home/src
+    tty: true
+    stdin_open: true
